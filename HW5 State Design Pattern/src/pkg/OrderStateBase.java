@@ -3,57 +3,77 @@ package pkg;
 public class OrderStateBase {
 
 
-	
-	boolean orderExists = false;
-	OrderState canceled;
-	OrderState completed;
-	OrderState recalled;
-	OrderState started;
 
-	OrderState orderState;
-	
-		public OrderStateBase() {
-	 canceled = new CanceledOrder(this);
-	 completed  = new CompletedOrder (this);
-fulfilled = new FulfilledOrder
-	 started  = new  StartedOrder(this);			
+	private boolean orderExists = false;
+	private int OrderID;
+	private OrderActions fulfilled;
+	private OrderActions canceled;
+	private OrderActions submitted;
+	private OrderActions beingBuilt;
+
+
+	private OrderActions orderState;
+
+	public OrderStateBase() {
+		canceled = new CancelledOrder(this);
+		submitted = new SubmittedOrder(this);
+		fulfilled = new FulfilledOrder(this);
+		beingBuilt = new BeingBuilt(this);
+		OrderID = 0; // let '0' mean invalid / new order
+	}
+
+	void setOrderState (OrderActions state) {
+		orderState =state;
 	}
 	
-		void setOrderState (OrderState state) {
-			orderState =state;
-		}
+	void setOrderID(int Id) {
+		OrderID =Id;
+	}
+
+	public void editOrder(int orderNum){
+		orderState.editOrder(orderNum);
+	}
+
+	public void cancelOrder() {
+		orderState.cancelOrder();
+	}
+
+	public void copyOrder(int ordernum) {
+		orderState.copyOrder(ordernum);
+	}
+	public void fulfillOrder() {
+		orderState.fulfillOrder();
+	}
+	
+	public void submitOrder() {
+		orderState.fulfillOrder();
+	}
+
+
+	// Get methods
+	public OrderActions getFulfilled() {
+		return fulfilled;
+	}
+
+	public OrderActions getCancelled() {
+		return canceled;
+	}
+
+	public OrderActions getSubmitted() {
+		return submitted;
+	}
+
+	public OrderActions getBeingBuilt() {
+		return beingBuilt;
+	}
+	
 		
-		public void lCanceled() {
-			orderState.CancelOrder();
-		}
-		
-		public void lCompleted() {
-			orderState.CompleteOrder();
-		}
-		
-		public void lRecalled(int OrderNumber) {
-			orderState.RecallOrder( OrderNumber);
-		}
-		
-		public void lStarted() {
-			orderState.BuildOutOrder();
-		}
-		
-		public OrderState getIsCanceled()
-		{
-			return canceled;
-			}
-		
-		public OrderState getIsComplete()
-		{
-			return completed;
-			}
-		public OrderState getIsRecalled()
-		{
-			return recalled;
-			}
-		public OrderState getIsStarted()
-		{
-			return canceled;
-			}
+	public int getOrderID() {
+	return this.OrderID;
+	}
 }
+
+
+
+
+

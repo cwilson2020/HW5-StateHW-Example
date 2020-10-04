@@ -1,6 +1,6 @@
 package pkg;
 
-public interface  OrderActions {
+public interface OrderActions {
 
 	
 	/*void CancelledOrder();
@@ -9,7 +9,12 @@ public interface  OrderActions {
 	void BuildOutOrder();*/
 	
 	
-	edit
+	 void editOrder(int OrderNumber);
+	 void cancelOrder();
+	void  copyOrder(int OrderNumber);
+	 void fulfillOrder();
+	 void submitOrder();
+	
 	
 	
 
