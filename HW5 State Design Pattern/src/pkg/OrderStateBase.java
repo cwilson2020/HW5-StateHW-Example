@@ -20,6 +20,7 @@ public class OrderStateBase {
 		fulfilled = new FulfilledOrder(this);
 		beingBuilt = new BeingBuilt(this);
 		OrderID = 0; // let '0' mean invalid / new order
+		orderState = beingBuilt;
 	}
 
 	void setOrderState (OrderActions state) {
@@ -46,7 +47,7 @@ public class OrderStateBase {
 	}
 	
 	public void submitOrder() {
-		orderState.fulfillOrder();
+		orderState.submitOrder();
 	}
 
 

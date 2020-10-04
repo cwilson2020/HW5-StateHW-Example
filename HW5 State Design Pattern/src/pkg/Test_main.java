@@ -13,14 +13,21 @@ public class Test_main {
 	public static void main(String[] args) {
 		state = new OrderStateBase();
 				state.editOrder(1);
-		
+	// test scenarios	
 		state.submitOrder();
 		
 		state.copyOrder(1);
 		
 		state.cancelOrder();
 		
-		state.submitOrder();// TODO Auto-generated method stub
+		state.submitOrder();
+		state.cancelOrder();
+		state.editOrder(1);
+		state.fulfillOrder();
+		state.cancelOrder();
+		state.fulfillOrder();
+		
+		
 
 	}
 
